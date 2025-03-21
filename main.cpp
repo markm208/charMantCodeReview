@@ -12,6 +12,8 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 
+int length(const char[] charArray)
+
 int main()
 {
     //this c-string, or array of 8 characters, ends with the null terminating character '\0'
@@ -76,7 +78,10 @@ int main()
 bool characteristic(const char numString[], int& c)
 {
     //hard coded return value to make the main() work
-    c = 123;
+    //c = 123;
+    
+    
+    
     return true;
 }
 //--
@@ -133,4 +138,14 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
     result[6] = '\0';
     
     return true;
+}
+//--
+int length(const char[] charArray){
+    int length = 0;
+    
+    while (charArray[length] != '\0') {
+        length++
+    }
+    
+    return length;
 }
