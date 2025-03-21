@@ -12,7 +12,9 @@ bool subtract(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int
 bool multiply(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int len);
 
-int length(const char[] charArray)
+int length(const char charArray[]);
+int charToInt(const char characters[]);
+int findDecimalPoint(const char charArray[]);
 
 int main()
 {
@@ -78,9 +80,18 @@ int main()
 bool characteristic(const char numString[], int& c)
 {
     //hard coded return value to make the main() work
-    //c = 123;
+    c = 0;
     
+    int decimalLength = findDecimalPoint(numString);
+    char intString[decimalLength];
     
+    intString[decimalLength] = '\0';
+    
+    for (int i = 0; i < decimalLength; i++) {
+        intString[i] = numString[i];
+    }
+    
+    c = charToInt(intString);
     
     return true;
 }
@@ -90,6 +101,9 @@ bool mantissa(const char numString[], int& numerator, int& denominator)
     //hard coded return value to make the main() work
     numerator = 456;
     denominator = 1000;
+    
+    
+    
     return true;
 }
 //--
@@ -140,12 +154,39 @@ bool divide(int c1, int n1, int d1, int c2, int n2, int d2, char result[], int l
     return true;
 }
 //--
-int length(const char[] charArray){
+int length(const char charArray[]){
     int length = 0;
     
     while (charArray[length] != '\0') {
-        length++
+        length++;
     }
     
     return length;
+}
+//--
+int charToInt(const char characters[]){
+    int integer = 0;
+    int power = 1;
+    
+    for (int i = 0; i < length(characters); i++) {
+        integer += (characters[i] - '0') * power;
+        power *= 10;
+    }
+    
+    return integer;
+}
+//--
+int findDecimalPoint(const char charArray[]){
+    int lengthToDecimal = 0;
+    int arrayLength = length(charArray);
+    
+    for (int i = 0; i < arrayLength; i++) {
+        if(charArray[i] == '.')
+        {
+            lengthToDecimal = i;
+            break;
+        }
+    }
+    
+    return lengthToDecimal;
 }
