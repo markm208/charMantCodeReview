@@ -99,8 +99,17 @@ bool characteristic(const char numString[], int& c)
 bool mantissa(const char numString[], int& numerator, int& denominator)
 {
     //hard coded return value to make the main() work
-    numerator = 456;
-    denominator = 1000;
+    numerator = 0;
+    denominator = 1;
+    
+    int decimalPoint = findDecimalPoint(numString)+1;
+    
+    int decimalPlaces = length(numString) - (decimalPoint);
+    
+    for (int i = decimalPlaces-1; i >= 0; i--) {
+        numerator += (numString[decimalPoint+i] - '0') * denominator;
+        denominator *= 10;
+    }
     
     
     
